@@ -21,6 +21,8 @@ repositories {
 ext {
     set('springCloudVersion', "Hoxton.SR9")
     set('mapstructVersion', '1.4.1.Final')
+    set('javaxValidationApiVersion', '2.0.1.Final')
+    set('hibernateValidatorVersion','6.0.13.Final')
 }
 
 dependencies {
@@ -28,6 +30,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+
+    implementation "javax.validation:validation-api:${javaxValidationApiVersion}"
+    implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
+
     runtimeOnly 'mysql:mysql-connector-java'
 
     compileOnly 'org.projectlombok:lombok'
