@@ -6,4 +6,5 @@ public class UrlMappings {
     }
 
     public static final String CONTACT = "contacts";
+    public static final String CONTACT_SEARCH = "/search";
 }
