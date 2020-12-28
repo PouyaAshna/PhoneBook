@@ -2,6 +2,7 @@ package ir.snapp.phonebook.service.impl;
 
 import ir.snapp.phonebook.domain.ContactEntity;
 import ir.snapp.phonebook.repository.jpa.ContactRepository;
+import ir.snapp.phonebook.service.ContactGithubService;
 import ir.snapp.phonebook.service.ContactService;
 import ir.snapp.phonebook.service.dto.ContactDTO;
 import ir.snapp.phonebook.service.mapper.ContactMapper;
@@ -20,12 +21,14 @@ public class ContactServiceImpl implements ContactService {
     private final ContactRepository contactRepository;
     private final ContactSpecification contactSpecification;
     private final ContactMapper contactMapper;
+    private final ContactGithubService contactGithubService;
 
     @Override
     public ContactDTO save(ContactDTO contactDTO) {
         log.debug("{} : Save -> {}", this.getClass().getCanonicalName(), contactDTO);
         ContactEntity contactEntity = this.contactMapper.toEntity(contactDTO);
         contactEntity = this.contactRepository.save(contactEntity);
+        this.contactGithubService.save(contactDTO.getGithub(), contactEntity.getId());
         return this.contactMapper.toDTO(contactEntity);
     }
 

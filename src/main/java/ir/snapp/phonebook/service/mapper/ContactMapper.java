@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 import java.util.Set;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = ContactGithubMapper.class)
 public interface ContactMapper {
 
     ContactDTO toDTO(ContactEntity entity);
