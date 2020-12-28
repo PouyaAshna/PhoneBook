@@ -1,6 +1,5 @@
 package ir.snapp.phonebook.service.specification;
 
-import ir.snapp.phonebook.domain.ContactEntity;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Path;
