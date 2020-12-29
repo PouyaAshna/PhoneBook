@@ -1,4 +1,4 @@
-package ir.snapp.phonebook.configuration;
+package ir.snapp.phonebook.configuration.resiliency;
 
 import io.github.resilience4j.ratelimiter.RateLimiter;
 import io.github.resilience4j.ratelimiter.RateLimiterConfig;

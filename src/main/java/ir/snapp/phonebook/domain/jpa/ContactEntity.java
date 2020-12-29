@@ -1,4 +1,4 @@
-package ir.snapp.phonebook.domain;
+package ir.snapp.phonebook.domain.jpa;
 
 import lombok.Data;
 

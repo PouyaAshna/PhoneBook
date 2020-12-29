@@ -1,4 +1,4 @@
-package ir.snapp.phonebook.configuration;
+package ir.snapp.phonebook.configuration.resiliency;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;

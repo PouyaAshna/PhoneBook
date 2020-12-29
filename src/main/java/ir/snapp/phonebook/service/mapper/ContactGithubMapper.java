@@ -1,6 +1,6 @@
 package ir.snapp.phonebook.service.mapper;
 
-import ir.snapp.phonebook.domain.ContactGithubEntity;
+import ir.snapp.phonebook.domain.jpa.ContactGithubEntity;
 import ir.snapp.phonebook.service.dto.ContactGithubDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

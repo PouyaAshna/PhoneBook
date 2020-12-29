@@ -1,6 +1,6 @@
 package ir.snapp.phonebook.service.impl;
 
-import ir.snapp.phonebook.domain.ContactEntity;
+import ir.snapp.phonebook.domain.jpa.ContactEntity;
 import ir.snapp.phonebook.repository.jpa.ContactRepository;
 import ir.snapp.phonebook.service.ContactGithubService;
 import ir.snapp.phonebook.service.ContactService;

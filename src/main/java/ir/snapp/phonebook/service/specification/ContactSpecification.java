@@ -1,6 +1,6 @@
 package ir.snapp.phonebook.service.specification;
 
-import ir.snapp.phonebook.domain.ContactEntity;
+import ir.snapp.phonebook.domain.jpa.ContactEntity;
 import ir.snapp.phonebook.service.dto.ContactDTO;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
