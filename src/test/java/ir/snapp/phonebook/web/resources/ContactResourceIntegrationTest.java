@@ -68,6 +68,31 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
     }
 
     @Test
+    public void fail_create_contact_when_id_is_not_null() {
+        Mockito.doNothing().when(contactGithubService).save(Mockito.anyString(), Mockito.any());
+
+        Faker faker = new Faker(Locale.US);
+        ContactDTO contactDTO = new ContactDTO();
+        contactDTO.setId(faker.number().randomNumber());
+        contactDTO.setName(faker.name().fullName());
+        contactDTO.setEmail(faker.internet().emailAddress());
+        contactDTO.setOrganization(faker.company().name());
+        contactDTO.setPhoneNumber(faker.regexify(TemplateRegex.FAKER_CELLPHONE));
+        contactDTO.setGithub(faker.name().name());
+
+        RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .body(contactDTO)
+                .when()
+                .put(UrlMappings.CONTACT_CREATE)
+                .then()
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .contentType(ContentType.JSON)
+                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.id));
+    }
+
+    @Test
     public void fail_create_contact_when_name_is_null() {
         Mockito.doNothing().when(contactGithubService).save(Mockito.anyString(), Mockito.any());
 
@@ -613,6 +638,25 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .statusCode(HttpStatus.OK.value())
                 .contentType(ContentType.JSON)
                 .body(PageFieldConstants.NUMBER_OF_ELEMENTS, Matchers.equalTo(0));
+    }
+
+    @Test
+    public void fail_search_contact_when_id_not_null() {
+        Faker faker = new Faker(Locale.US);
+
+        ContactDTO searchQuery = new ContactDTO();
+        searchQuery.setId(faker.number().randomNumber());
+
+        RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .body(searchQuery)
+                .when()
+                .post(UrlMappings.CONTACT_SEARCH)
+                .then()
+                .statusCode(HttpStatus.BAD_REQUEST.value())
+                .contentType(ContentType.JSON)
+                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.id));
     }
 
     @Test

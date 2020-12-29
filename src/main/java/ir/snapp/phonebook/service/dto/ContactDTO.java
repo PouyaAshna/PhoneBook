@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldNameConstants;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -16,6 +17,7 @@ import javax.validation.constraints.Size;
 @FieldNameConstants
 public class ContactDTO {
 
+    @Null(groups = {PersistGroup.class, SearchGroup.class})
     private Long id;
 
     @NotBlank(groups = PersistGroup.class)
