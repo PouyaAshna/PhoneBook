@@ -1,4 +1,4 @@
-package ir.snapp.phonebook.configuration;
+package ir.snapp.phonebook.configuration.httpclient;
 
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
