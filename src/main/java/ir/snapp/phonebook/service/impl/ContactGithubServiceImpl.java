@@ -26,9 +26,8 @@ public class ContactGithubServiceImpl implements ContactGithubService {
     @Override
     public void save(String githubUsername, Long contactId) {
         log.debug("{} : Save ->  GithubUsername: {}, contactId: {}", this.getClass().getCanonicalName(), githubUsername, contactId);
-        this.githubService.findAll(githubUsername, contactId, PageRequest.of(1, 20), githubRepositoryNames -> {
-            this.saveAllRepositories(githubRepositoryNames, contactId);
-        });
+        this.githubService.findAll(githubUsername, contactId, PageRequest.of(1, 20), githubRepositoryNames ->
+                this.saveAllRepositories(githubRepositoryNames, contactId));
     }
 
     @Override

@@ -34,9 +34,7 @@ public class GithubFailureSchedule {
                     githubFailureEntity.getRepositoryName(),
                     githubFailureEntity.getContactId(),
                     PageRequest.of(githubFailureEntity.getPageNumber(), githubFailureEntity.getPageSize()),
-                    githubRepositoryNames -> {
-                        this.contactGithubService.saveAllRepositories(githubRepositoryNames, githubFailureEntity.getContactId());
-                    }
+                    githubRepositoryNames -> this.contactGithubService.saveAllRepositories(githubRepositoryNames, githubFailureEntity.getContactId())
             );
             this.githubFailureRepository.delete(githubFailureEntity);
         });
