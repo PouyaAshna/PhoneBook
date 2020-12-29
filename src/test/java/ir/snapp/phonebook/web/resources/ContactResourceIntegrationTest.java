@@ -7,8 +7,8 @@ import ir.snapp.phonebook.configuration.BaseIntegrationTestConfiguration;
 import ir.snapp.phonebook.configuration.constants.PageFieldConstants;
 import ir.snapp.phonebook.configuration.constants.TemplateRegex;
 import ir.snapp.phonebook.configuration.constants.UrlMappings;
-import ir.snapp.phonebook.exception.ApiError;
-import ir.snapp.phonebook.exception.ApiFieldError;
+import ir.snapp.phonebook.exception.dto.ApiErrorDTO;
+import ir.snapp.phonebook.exception.dto.ApiFieldErrorDTO;
 import ir.snapp.phonebook.repository.jpa.ContactRepository;
 import ir.snapp.phonebook.service.ContactGithubService;
 import ir.snapp.phonebook.service.ContactService;
@@ -89,7 +89,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.id));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.id));
     }
 
     @Test
@@ -113,7 +113,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.name));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.name));
     }
 
     @Test
@@ -137,7 +137,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.email));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.email));
     }
 
     @Test
@@ -161,7 +161,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.email));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.email));
     }
 
     @Test
@@ -185,7 +185,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.organization));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.organization));
     }
 
     @Test
@@ -209,7 +209,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.phoneNumber));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.phoneNumber));
     }
 
     @Test
@@ -233,7 +233,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.phoneNumber));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.phoneNumber));
     }
 
     @Test
@@ -257,7 +257,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.github));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.github));
     }
 
 
@@ -286,7 +286,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.error, Matchers.equalTo("DatabaseException"));
+                .body(ApiErrorDTO.Fields.error, Matchers.equalTo("DatabaseException"));
     }
 
     @Test
@@ -656,7 +656,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.id));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.id));
     }
 
     @Test
@@ -675,7 +675,7 @@ public class ContactResourceIntegrationTest extends BaseIntegrationTestConfigura
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value())
                 .contentType(ContentType.JSON)
-                .body(ApiError.Fields.fields + DOT + ApiFieldError.Fields.field, Matchers.hasItem(ContactDTO.Fields.phoneNumber));
+                .body(ApiErrorDTO.Fields.fields + DOT + ApiFieldErrorDTO.Fields.field, Matchers.hasItem(ContactDTO.Fields.phoneNumber));
     }
 
 }

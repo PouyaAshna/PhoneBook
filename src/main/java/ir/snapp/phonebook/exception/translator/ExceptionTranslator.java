@@ -1,5 +1,7 @@
-package ir.snapp.phonebook.exception;
+package ir.snapp.phonebook.exception.translator;
 
+import ir.snapp.phonebook.exception.dto.ApiErrorDTO;
+import ir.snapp.phonebook.exception.dto.ApiFieldErrorDTO;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,8 +23,8 @@ public class ExceptionTranslator {
     private final HttpServletRequest httpServletRequest;
 
     @ExceptionHandler(value = DataIntegrityViolationException.class)
-    public ResponseEntity<ApiError> handleDataIntegrityViolationException(DataIntegrityViolationException dataIntegrityViolationException) {
-        ApiError.ApiErrorBuilder apiErrorBuilder = ApiError.builder()
+    public ResponseEntity<ApiErrorDTO> handleDataIntegrityViolationException(DataIntegrityViolationException dataIntegrityViolationException) {
+        ApiErrorDTO.ApiErrorDTOBuilder apiErrorBuilder = ApiErrorDTO.builder()
                 .error("DatabaseException")
                 .timestamp(ZonedDateTime.now())
                 .status(HttpStatus.BAD_REQUEST)
@@ -44,20 +45,20 @@ public class ExceptionTranslator {
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiError> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
-        Set<ApiFieldError> apiFieldErrors = methodArgumentNotValidException
+    public ResponseEntity<ApiErrorDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
+        Set<ApiFieldErrorDTO> apiFieldErrorDTOS = methodArgumentNotValidException
                 .getBindingResult()
                 .getFieldErrors()
                 .stream()
                 .map(fieldError ->
-                        new ApiFieldError(fieldError.getObjectName(), fieldError.getField(), fieldError.getDefaultMessage(), fieldError.getRejectedValue())
+                        new ApiFieldErrorDTO(fieldError.getObjectName(), fieldError.getField(), fieldError.getDefaultMessage(), fieldError.getRejectedValue())
                 ).collect(Collectors.toSet());
-        ApiError.ApiErrorBuilder apiErrorBuilder = ApiError.builder()
+        ApiErrorDTO.ApiErrorDTOBuilder apiErrorBuilder = ApiErrorDTO.builder()
                 .error("MethodArgumentValidationException")
                 .message("ValidationException")
                 .timestamp(ZonedDateTime.now())
                 .status(HttpStatus.BAD_REQUEST)
-                .fields(apiFieldErrors)
+                .fields(apiFieldErrorDTOS)
                 .path(httpServletRequest.getRequestURI());
         return ResponseEntity.badRequest().body(apiErrorBuilder.build());
     }

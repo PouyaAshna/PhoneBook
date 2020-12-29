@@ -1,4 +1,4 @@
-package ir.snapp.phonebook.exception;
+package ir.snapp.phonebook.exception.dto;
 
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
@@ -13,11 +13,11 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
-public class ApiError {
+public class ApiErrorDTO {
     private HttpStatus status;
     private ZonedDateTime timestamp;
     private String error;
     private String message;
     private String path;
-    private Set<ApiFieldError> fields;
+    private Set<ApiFieldErrorDTO> fields;
 }

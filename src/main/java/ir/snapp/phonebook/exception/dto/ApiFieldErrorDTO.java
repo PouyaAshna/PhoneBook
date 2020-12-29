@@ -1,4 +1,4 @@
-package ir.snapp.phonebook.exception;
+package ir.snapp.phonebook.exception.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.experimental.FieldNameConstants;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldNameConstants
-public class ApiFieldError {
+public class ApiFieldErrorDTO {
 
     private String objectName;
     private String field;
