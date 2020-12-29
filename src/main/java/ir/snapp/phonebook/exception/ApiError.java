@@ -1,6 +1,7 @@
 package ir.snapp.phonebook.exception;
 
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldNameConstants
 public class ApiError {
     private HttpStatus status;
     private ZonedDateTime timestamp;
