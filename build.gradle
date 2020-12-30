@@ -26,7 +26,8 @@ ext {
     set('resilience4jVersion', '1.3.1')
     set('restAssuredVersion', '3.0.0')
     set('junitVersion', '4.13')
-    set('javaFakerVersion','0.15')
+    set('javaFakerVersion', '0.15')
+    set('swaggerVersion', '2.8.0')
 }
 
 dependencies {
@@ -39,6 +40,9 @@ dependencies {
 
     implementation "javax.validation:validation-api:${javaxValidationApiVersion}"
     implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
+
+    implementation "io.springfox:springfox-swagger2:${swaggerVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
 
     runtimeOnly 'mysql:mysql-connector-java'
 
