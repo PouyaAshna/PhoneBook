@@ -7,7 +7,9 @@ import ir.snapp.phonebook.service.dto.GithubDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -50,8 +52,17 @@ public class GithubServiceImpl implements GithubService {
                         this.findAll(githubUsername, contactId, pageable.next(), githubResponseConsumer);
                     }
                 })
-                .doOnError(throwable ->
-                        this.githubFailureService.save(contactId, githubUsername, pageable, throwable.getMessage())
+                .doOnError(throwable -> {
+                            boolean shouldPersistFailure = true;
+                            if (throwable instanceof WebClientResponseException) {
+                                WebClientResponseException responseException = (WebClientResponseException) throwable;
+                                if (HttpStatus.NOT_FOUND.equals(responseException.getStatusCode())) {
+                                    shouldPersistFailure = false;
+                                }
+                            }
+                            if (shouldPersistFailure)
+                                this.githubFailureService.save(contactId, githubUsername, pageable, throwable.getMessage());
+                        }
                 )
                 .subscribe();
     }
