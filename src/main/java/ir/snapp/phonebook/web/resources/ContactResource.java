@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * This class expose contact rest apis
+ *
+ * @author Pouya Ashna
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -23,6 +28,12 @@ public class ContactResource {
 
     private final ContactService contactService;
 
+    /**
+     * This PUT api responsible for save contact
+     *
+     * @param contactDTO requested contact
+     * @return saved contact
+     */
     @PutMapping(UrlMappings.CONTACT_CREATE)
     public ResponseEntity<ContactDTO> save(@RequestBody @Validated(PersistGroup.class) ContactDTO contactDTO) {
         log.debug("{} : Save -> {}", this.getClass().getCanonicalName(), contactDTO);
@@ -30,8 +41,16 @@ public class ContactResource {
         return ResponseEntity.ok(result);
     }
 
+    /**
+     * This POST api responsible for search contact
+     *
+     * @param contactDTO search query
+     * @param pageable   page info
+     * @return founded contacts
+     */
     @PostMapping(UrlMappings.CONTACT_SEARCH)
-    public ResponseEntity<Page<ContactDTO>> search(@RequestBody @Validated(SearchGroup.class) ContactDTO contactDTO, Pageable pageable) {
+    public ResponseEntity<Page<ContactDTO>> search(@RequestBody @Validated(SearchGroup.class) ContactDTO contactDTO,
+                                                   Pageable pageable) {
         log.debug("{} : Search -> {}", this.getClass().getCanonicalName(), contactDTO);
         Page<ContactDTO> result = this.contactService.search(contactDTO, pageable);
         return ResponseEntity.ok(result);

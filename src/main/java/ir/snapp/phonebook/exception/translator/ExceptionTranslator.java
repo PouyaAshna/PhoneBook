@@ -16,14 +16,26 @@ import java.time.ZonedDateTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * This class translate exception to {@link ApiErrorDTO}
+ *
+ * @author Pouya Ashna
+ */
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class ExceptionTranslator {
 
     private final HttpServletRequest httpServletRequest;
 
+    /**
+     * Translate database exception
+     *
+     * @param dataIntegrityViolationException database exception
+     * @return translated exception
+     */
     @ExceptionHandler(value = DataIntegrityViolationException.class)
-    public ResponseEntity<ApiErrorDTO> handleDataIntegrityViolationException(DataIntegrityViolationException dataIntegrityViolationException) {
+    public ResponseEntity<ApiErrorDTO> handleDataIntegrityViolationException(
+            DataIntegrityViolationException dataIntegrityViolationException) {
         ApiErrorDTO.ApiErrorDTOBuilder apiErrorBuilder = ApiErrorDTO.builder()
                 .error("DatabaseException")
                 .timestamp(ZonedDateTime.now())
@@ -44,14 +56,26 @@ public class ExceptionTranslator {
         return ResponseEntity.badRequest().body(apiErrorBuilder.build());
     }
 
+    /**
+     * Translate validation exception of method arguments
+     *
+     * @param methodArgumentNotValidException validation exception
+     * @return translated exception
+     */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException methodArgumentNotValidException) {
+    public ResponseEntity<ApiErrorDTO> handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException methodArgumentNotValidException) {
         Set<ApiFieldErrorDTO> apiFieldErrorDTOS = methodArgumentNotValidException
                 .getBindingResult()
                 .getFieldErrors()
                 .stream()
                 .map(fieldError ->
-                        new ApiFieldErrorDTO(fieldError.getObjectName(), fieldError.getField(), fieldError.getDefaultMessage(), fieldError.getRejectedValue())
+                        new ApiFieldErrorDTO(
+                                fieldError.getObjectName(),
+                                fieldError.getField(),
+                                fieldError.getDefaultMessage(),
+                                fieldError.getRejectedValue()
+                        )
                 ).collect(Collectors.toSet());
         ApiErrorDTO.ApiErrorDTOBuilder apiErrorBuilder = ApiErrorDTO.builder()
                 .error("MethodArgumentValidationException")

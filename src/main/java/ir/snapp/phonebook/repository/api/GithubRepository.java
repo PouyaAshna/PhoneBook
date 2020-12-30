@@ -14,6 +14,11 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
+/**
+ * Github Repository
+ *
+ * @author Pouya Ashna
+ */
 @Repository
 @RequiredArgsConstructor
 public class GithubRepository {
@@ -24,10 +29,18 @@ public class GithubRepository {
     @Qualifier("githubCircuitBreaker")
     private final CircuitBreaker circuitBreaker;
 
+    /**
+     * This method create api call to fetch github repositories
+     *
+     * @param githubUserName github username
+     * @param pageable       page info
+     * @return founded repositories
+     */
     public Mono<List<GithubDTO>> findAll(String githubUserName, Pageable pageable) {
         return webClient
                 .get()
-                .uri("https://api.github.com/users/{username}/repos?page={pageNumber}&per_page={pageSize}", githubUserName, pageable.getPageNumber(), pageable.getPageSize())
+                .uri("https://api.github.com/users/{username}/repos?page={pageNumber}&per_page={pageSize}",
+                        githubUserName, pageable.getPageNumber(), pageable.getPageSize())
                 .retrieve()
                 .bodyToFlux(GithubDTO.class)
                 .transformDeferred(CircuitBreakerOperator.of(circuitBreaker))

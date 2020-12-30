@@ -3,6 +3,11 @@ package ir.snapp.phonebook.service.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * ContactGithub data transfer object
+ *
+ * @author Pouya Ashna
+ */
 @Data
 @NoArgsConstructor
 public class ContactGithubDTO {

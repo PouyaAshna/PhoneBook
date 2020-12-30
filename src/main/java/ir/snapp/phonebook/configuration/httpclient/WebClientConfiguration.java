@@ -12,10 +12,20 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 import reactor.netty.tcp.TcpClient;
 
+/**
+ * This class manage how to initialize webClient and config it for more information about WebClient see
+ * {@link WebClient} documentation
+ *
+ * @author Pouya Ashna
+ */
 @Slf4j
 @Configuration
 public class WebClientConfiguration {
 
+    /**
+     * Define how to initialize webClient
+     * @return WebClient instance
+     */
     @Bean
     public WebClient webClient() {
         TcpClient tcpClient = TcpClient.create()
@@ -28,6 +38,10 @@ public class WebClientConfiguration {
                 .filter(logRequest()).build();
     }
 
+    /**
+     * Config how to log request that occur with webclient
+     * @return configuration of log
+     */
     private ExchangeFilterFunction logRequest() {
         return (clientRequest, next) -> {
             log.debug("Request: {} {}", clientRequest.method(), clientRequest.url());

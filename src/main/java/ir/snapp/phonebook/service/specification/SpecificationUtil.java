@@ -1,9 +1,16 @@
 package ir.snapp.phonebook.service.specification;
 
+import lombok.experimental.UtilityClass;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.Path;
 
+/**
+ * This class contains some of basic method for specification
+ *
+ * @author Pouya Ashna
+ */
+@UtilityClass
 public class SpecificationUtil {
 
     public static final String WILDCARD = "%";

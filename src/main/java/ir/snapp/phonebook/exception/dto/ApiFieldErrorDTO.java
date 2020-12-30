@@ -6,6 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldNameConstants;
 
+/**
+ * ApiFieldError data transfer object
+ *
+ * @author Pouya Ashna
+ */
 @Getter
 @Setter
 @NoArgsConstructor

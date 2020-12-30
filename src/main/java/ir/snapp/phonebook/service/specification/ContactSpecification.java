@@ -5,6 +5,12 @@ import ir.snapp.phonebook.service.dto.ContactDTO;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class generate specification for ContactEntity with input data for more information about Specification see
+ * {@link Specification} documentation
+ *
+ * @author Pouya Ashna
+ */
 @Service
 public class ContactSpecification {
 

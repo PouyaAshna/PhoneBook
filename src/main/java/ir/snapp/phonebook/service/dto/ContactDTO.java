@@ -12,6 +12,11 @@ import javax.validation.constraints.Null;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+/**
+ * Contact data transfer object
+ *
+ * @author Pouya Ashna
+ */
 @Data
 @NoArgsConstructor
 @FieldNameConstants

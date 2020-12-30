@@ -13,6 +13,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+/**
+ * this class manage operation for contact
+ *
+ * @author Pouya Ashna
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -23,6 +28,12 @@ public class ContactServiceImpl implements ContactService {
     private final ContactMapper contactMapper;
     private final ContactGithubService contactGithubService;
 
+    /**
+     * This method save contact and after that request to save github repositories for specified github username
+     *
+     * @param contactDTO input contact
+     * @return saved contact
+     */
     @Override
     public ContactDTO save(ContactDTO contactDTO) {
         log.debug("{} : Save -> {}", this.getClass().getCanonicalName(), contactDTO);
@@ -32,6 +43,13 @@ public class ContactServiceImpl implements ContactService {
         return this.contactMapper.toDTO(contactEntity);
     }
 
+    /**
+     * This method search contacts with {@link org.springframework.data.jpa.domain.Specification}
+     *
+     * @param contactDTO search params
+     * @param pageable   page info
+     * @return founded contacts
+     */
     @Override
     public Page<ContactDTO> search(ContactDTO contactDTO, Pageable pageable) {
         log.debug("{} : Search -> {}", this.getClass().getCanonicalName(), contactDTO);

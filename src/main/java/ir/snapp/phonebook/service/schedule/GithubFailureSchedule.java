@@ -12,6 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+/**
+ * this class recalls github failures on schedule
+ *
+ * @author Pouya Ashna
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -31,10 +36,11 @@ public class GithubFailureSchedule {
         Page<GithubFailureEntity> githubFailures = this.githubFailureRepository.findAll(pageable);
         githubFailures.forEach(githubFailureEntity -> {
             this.githubService.findAll(
-                    githubFailureEntity.getRepositoryName(),
+                    githubFailureEntity.getGithubUsername(),
                     githubFailureEntity.getContactId(),
                     PageRequest.of(githubFailureEntity.getPageNumber(), githubFailureEntity.getPageSize()),
-                    githubRepositoryNames -> this.contactGithubService.saveAllRepositories(githubRepositoryNames, githubFailureEntity.getContactId())
+                    githubRepositoryNames ->
+                            this.contactGithubService.saveAllRepositories(githubRepositoryNames, githubFailureEntity.getContactId())
             );
             this.githubFailureRepository.delete(githubFailureEntity);
         });

@@ -2,6 +2,11 @@ package ir.snapp.phonebook.configuration.constants;
 
 import lombok.experimental.UtilityClass;
 
+/**
+ * This class include some useful regex to use for validation and generate fake data
+ *
+ * @author Pouya Ashna
+ */
 @UtilityClass
 public class TemplateRegex {
 

@@ -5,6 +5,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Contact Github Domain
+ *
+ * @author Pouya Ashna
+ */
 @Data
 @Entity
 @Table(name = "contact_github", uniqueConstraints =

@@ -2,6 +2,11 @@ package ir.snapp.phonebook.configuration.constants;
 
 import lombok.experimental.UtilityClass;
 
+/**
+ * This class include Rest URL constants
+ *
+ * @author Pouya Ashna
+ */
 @UtilityClass
 public class UrlMappings {
 

@@ -4,9 +4,15 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * Contact Domain
+ *
+ * @author Pouya Ashna
+ */
 @Data
 @Entity
-@Table(name = "contact", uniqueConstraints = {@UniqueConstraint(name = "UniqueEmailAndPhoneNumber", columnNames = {"email", "phoneNumber"})})
+@Table(name = "contact", uniqueConstraints =
+        {@UniqueConstraint(name = "UniqueEmailAndPhoneNumber", columnNames = {"email", "phoneNumber"})})
 public class ContactEntity {
 
     @Id

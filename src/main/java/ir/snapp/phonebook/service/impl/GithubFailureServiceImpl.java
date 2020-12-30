@@ -8,6 +8,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+/**
+ * This class manage operation for github failure
+ *
+ * @author Pouya Ashna
+ */
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -15,12 +20,21 @@ public class GithubFailureServiceImpl implements GithubFailureService {
 
     private final GithubFailureRepository githubFailureRepository;
 
+    /**
+     * This method save github failure request information
+     *
+     * @param contactId      contactId
+     * @param githubUsername github username
+     * @param pageable       page info
+     * @param message        failure message
+     */
     @Override
-    public void save(Long contactId, String githubRepositoryName, Pageable pageable, String message) {
-        log.debug("{} : Save -> ContactId : {}, GithubRepositoryName : {}", this.getClass().getCanonicalName(), contactId, githubRepositoryName);
+    public void save(Long contactId, String githubUsername, Pageable pageable, String message) {
+        log.debug("{} : Save -> ContactId : {}, GithubUsername : {}",
+                this.getClass().getCanonicalName(), contactId, githubUsername);
         GithubFailureEntity githubFailureEntity = new GithubFailureEntity();
         githubFailureEntity.setContactId(contactId);
-        githubFailureEntity.setRepositoryName(githubRepositoryName);
+        githubFailureEntity.setGithubUsername(githubUsername);
         githubFailureEntity.setPageNumber(pageable.getPageNumber());
         githubFailureEntity.setPageSize(pageable.getPageSize());
         githubFailureEntity.setFailureMessage(message);

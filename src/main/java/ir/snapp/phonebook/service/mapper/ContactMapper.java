@@ -6,6 +6,11 @@ import org.mapstruct.Mapper;
 
 import java.util.Set;
 
+/**
+ * Contact mapper
+ *
+ * @author Pouya Ashna
+ */
 @Mapper(componentModel = "spring", uses = ContactGithubMapper.class)
 public interface ContactMapper {
 
