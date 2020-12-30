@@ -86,4 +86,5 @@ This will start the API container exposing the application's port (set to `8080`
 * 	[JavaFaker](https://github.com/DiUS/java-faker) - is a library that can be used to generate a wide array of real-looking data from addresses to popular culture references.
 
 ## Documentation
+* 	[JavaDoc](https://pouyaashna.github.io/PhoneBook/) - ``` https://pouyaashna.github.io/PhoneBook/ ``` - Java Documentation
 * 	[Swagger](http://localhost:8080/swagger-ui.html) - ``` http://localhost:8080/swagger-ui.html ``` - Documentation & Testing
