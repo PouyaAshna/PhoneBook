@@ -1,4 +1,4 @@
-package ir.snapp.phonebook.exception.dto;
+package ir.snapp.phonebook.service.dto;
 
 import lombok.*;
 import lombok.experimental.FieldNameConstants;

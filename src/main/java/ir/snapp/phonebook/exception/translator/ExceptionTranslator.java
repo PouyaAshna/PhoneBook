@@ -1,7 +1,7 @@
 package ir.snapp.phonebook.exception.translator;
 
-import ir.snapp.phonebook.exception.dto.ApiErrorDTO;
-import ir.snapp.phonebook.exception.dto.ApiFieldErrorDTO;
+import ir.snapp.phonebook.service.dto.ApiErrorDTO;
+import ir.snapp.phonebook.service.dto.ApiFieldErrorDTO;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
