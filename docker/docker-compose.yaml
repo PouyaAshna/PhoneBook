@@ -4,7 +4,7 @@ services:
   phonebook:
     container_name: phonebook
     build: ../
-    command: ash -c "java -jar *.jar --spring.datasource.username=root --spring.datasource.password=root --spring.datasource.url=jdbc:mysql://phonebook-mysql:3306/phonebook?createDatabaseIfNotExist=true --spring.data.mongodb.database=phonebook --spring.data.mongodb.host=phonebook-mongo --spring.data.mongodb.port=27017"
+    command: ash -c "java -jar *.jar --spring.datasource.url=jdbc:mysql://phonebook-mysql:3306/phonebook?createDatabaseIfNotExist=true --spring.data.mongodb.host=phonebook-mongo"
     restart: always
     depends_on:
       - phonebook-mysql
