@@ -18,7 +18,7 @@ public class GithubFailureEntity {
     private String id;
     private Long contactId;
     private String githubUsername;
-    private int pageNumber;
-    private int pageSize;
+    private Integer pageNumber;
+    private Integer pageSize;
     private String failureMessage;
 }
