@@ -92,4 +92,4 @@ apis on this ip
 ## Documentation
 * 	[JavaDoc](https://pouyaashna.github.io/PhoneBook/) - ``` https://pouyaashna.github.io/PhoneBook/ ``` - Java Documentation
 * 	[LocalSwagger](http://localhost:8080/swagger-ui.html) - ``` http://localhost:8080/swagger-ui.html ``` - Documentation & Testing
-* 	[ReleaseSwagger](http://194.5.193.35:8080/swagger-ui.html#) - ``` http://194.5.193.197:8080/swagger-ui.html# ``` - Documentation & Testing
+* 	[ReleaseSwagger](http://194.5.193.35:8080/swagger-ui.html#) - ``` http://194.5.193.35:8080/swagger-ui.html# ``` - Documentation & Testing
